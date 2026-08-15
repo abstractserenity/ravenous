@@ -1,5 +1,6 @@
 import businessImage from '../assets/business.png';
 
+
 const businessData= [{
     image: businessImage,
     name:'Phoenix Restaurant',
@@ -59,7 +60,7 @@ function Business({ business }) {
 
 function BusinessList() {
     return (
-        <div className="BusinessList flex flex-wrap gap-6 ml-88 mr-80">
+        <div className="BusinessList flex flex-wrap gap-6 ml-88 mr-80 mt-8">
             {businessData.map((business, index) => (
                 <Business key={index} business={business}/>
             ))}
