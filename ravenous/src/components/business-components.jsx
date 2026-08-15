@@ -1,5 +1,7 @@
+import businessImage from '../assets/business.png';
+
 const businessData= [{
-    image:'/assets/business.png',
+    image: businessImage,
     name:'Business',
     address:'123 Main St',
     city:'Anytown',
@@ -10,23 +12,23 @@ const businessData= [{
     reviewCount: 1234
 }];
 
-function Business() {
+function Business({ business }) {
     return (
         <div className="Business">
             <div className="image-container">
-                <img src={businessData.image} alt={businessData.name} />
+                <img src={business.image} alt={business.name} />
             </div>
-            <h2>{businessData.name}</h2>
+            <h2>{business.name}</h2>
             <div className="Business-information">
                 <div className="Business-address">
-                    <p>{businessData.address}</p>
-                    <p>{businessData.city}</p>
-                    <p>{`${businessData.state} ${businessData.zipCode}`}</p>
+                    <p>{business.address}</p>
+                    <p>{business.city}</p>
+                    <p>{`${business.state} ${business.zipCode}`}</p>
                 </div>
                 <div className="Business-reviews">
-                    <h3>{businessData.category.toUpperCase()}</h3>
-                    <h3 className="rating">{`${businessData.rating} stars`}</h3>
-                    <p>{`${businessData.reviewCount} reviews`}</p>
+                    <h3>{business.category.toUpperCase()}</h3>
+                    <h3 className="rating">{`${business.rating} stars`}</h3>
+                    <p>{`${business.reviewCount} reviews`}</p>
                 </div>
             </div>
         </div>
