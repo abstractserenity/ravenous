@@ -37,22 +37,20 @@ function Business({ business }) {
     return (
         <div className="Business w-64">
             <img
-                className="w-full h-48 object-cover rounded-sm border-amber-300 border-2"
+                className="w-full h-48 object-cover rounded-sm"
                 src={business.image}
                 alt={business.name}
             />
             <h2 className="mt-3 font-bold text-lg">{business.name}</h2>
-            <div className="Business-information grid grid-cols-2 gap-4 mt-2">
-                <div className="Business-address text-sm text-gray-600">
-                    <p>{business.address}</p>
-                    <p>{business.city}</p>
-                    <p>{`${business.state} ${business.zipCode}`}</p>
-                </div>
-                <div className="Business-reviews justify-items-end">
-                    <h3 className="text-amber-500 font-semibold text-justify">{business.category.toUpperCase()}</h3>
-                    <h3 className="rating text-amber-500 font-semibold text-justify">{`${business.rating} stars`}</h3>
-                    <p className="text-sm text-gray-600 text-justify">{`${business.reviewCount} reviews`}</p>
-                </div>
+            <div className="Business-information grid grid-cols-2 items-baseline gap-x-4 mt-2">
+                <p className="text-sm text-gray-600">{business.address}</p>
+                <h3 className="text-amber-500 font-semibold text-right">{business.category.toUpperCase()}</h3>
+
+                <p className="text-sm text-gray-600">{business.city}</p>
+                <h3 className="rating text-amber-500 font-semibold text-right">{`${business.rating} stars`}</h3>
+
+                <p className="text-sm text-gray-600">{`${business.state} ${business.zipCode}`}</p>
+                <p className="text-sm text-gray-600 text-right">{`${business.reviewCount} reviews`}</p>
             </div>
         </div>
     )
@@ -60,7 +58,7 @@ function Business({ business }) {
 
 function BusinessList() {
     return (
-        <div className="BusinessList flex flex-wrap gap-6 ml-88 mr-80 mt-8">
+        <div className="BusinessList flex flex-wrap justify-center gap-20 mt-8">
             {businessData.map((business, index) => (
                 <Business key={index} business={business}/>
             ))}

@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-    --font-Inter: 'Inter';
+    --font-nunito:'Nunito', sans-serif;
+    --color-btn-brown: #E6A337;
+    --color-btn-brown-dark: #BA7C17;
+    --color-btn-brown-light: #FCF5E8;
 }
+
