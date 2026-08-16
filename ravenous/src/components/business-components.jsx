@@ -42,21 +42,21 @@ function Business({ business }) {
                 alt={business.name}
             />
             <h2 className="mt-3 font-bold text-lg">{business.name}</h2>
-            <div className="Business-information">
+            <div className="Business-information grid grid-cols-2 gap-4 mt-2">
                 <div className="Business-address text-sm text-gray-600">
                     <p>{business.address}</p>
                     <p>{business.city}</p>
                     <p>{`${business.state} ${business.zipCode}`}</p>
                 </div>
-                <div className="Business-reviews">
-                    <h3 className="text-amber-500 font-semibold">{business.category.toUpperCase()}</h3>
-                    <h3 className="rating text-amber-500 font-semibold">{`${business.rating} stars`}</h3>
-                    <p className="text-sm text-gray-600">{`${business.reviewCount} reviews`}</p>
+                <div className="Business-reviews justify-items-end">
+                    <h3 className="text-amber-500 font-semibold text-justify">{business.category.toUpperCase()}</h3>
+                    <h3 className="rating text-amber-500 font-semibold text-justify">{`${business.rating} stars`}</h3>
+                    <p className="text-sm text-gray-600 text-justify">{`${business.reviewCount} reviews`}</p>
                 </div>
             </div>
         </div>
     )
-};
+}
 
 function BusinessList() {
     return (

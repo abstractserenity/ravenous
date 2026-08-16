@@ -5,13 +5,13 @@ import './App.css'
 function App() {
 
   return (
-    <>
+    <div className="font-inter">
         <div className="p-2.5 bg-amber-400">
             <h1 className="text-4xl font-bold text-center bg-amber-400 text-white">ravenous</h1>
         </div>
       <SearchBar />
       <BusinessList />
-    </>
+    </div>
   )
 }
 
