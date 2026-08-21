@@ -1,33 +1,31 @@
-import React, { useState } from 'react';
+// Inside App.jsx
+import { useState } from 'react';
 import SearchBar from "./components/search-bar-component.jsx";
-import { BusinessList, businessData } from "./components/business-components.jsx";
+import { BusinessList } from "./components/business-components.jsx";
+import { fetchBusinessData } from "./utils/yelp-api.js";
 import './App.css';
 
 function App() {
-    const [businesses, setBusinesses] = useState(businessData);
+    // Start with an empty list instead of your mock businessData array
+    const [businesses, setBusinesses] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const searchYelp = (term, location, sortBy) => {
-        // Filter by term & location
-        const filtered = businessData.filter((b) => {
-            const matchTerm = !term ||
-                b.name.toLowerCase().includes(term.toLowerCase()) ||
-                b.category.toLowerCase().includes(term.toLowerCase());
+    // 2. Add 'async' here since making network requests takes time
+    const searchYelp = async (term, location, sortBy) => {
+        // Guard clause: Don't execute if the user hasn't typed a location yet (Yelp requires this)
+        if (!location) {
+            alert("Please enter a location to search!");
+            return;
+        }
 
-            const matchLocation = !location ||
-                b.city.toLowerCase().includes(location.toLowerCase()) ||
-                b.state.toLowerCase().includes(location.toLowerCase());
+        setIsLoading(true);
 
-            return matchTerm && matchLocation;
-        });
+        // 3. Call your API function and wait for the results
+        const results = await fetchBusinessData({ term, location, sortBy });
 
-        // Sort by selected tab
-        const sorted = [...filtered].sort((a, b) => {
-            if (sortBy === 'rating') return b.rating - a.rating;
-            if (sortBy === 'review_count') return b.reviewCount - a.reviewCount;
-            return 0; // Default: best_match
-        });
-
-        setBusinesses(sorted);
+        // 4. Update your state with the live data returned from Yelp
+        setBusinesses(results);
+        setIsLoading(false);
     };
 
     return (
@@ -35,8 +33,17 @@ function App() {
             <div className="p-2.5 bg-btn-brown">
                 <h1 className="text-4xl font-bold text-center bg-btn-brown text-white">ravenous</h1>
             </div>
+
             <SearchBar searchYelp={searchYelp} />
-            <BusinessList businesses={businesses} />
+
+            {/* 5. Show a friendly message while loading, otherwise display the list */}
+            {isLoading ? (
+                <div className="text-center mt-12 text-xl font-semibold text-gray-600">
+                    Searching Yelp for businesses...
+                </div>
+            ) : (
+                <BusinessList businesses={businesses} />
+            )}
         </div>
     );
 }

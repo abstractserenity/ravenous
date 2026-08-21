@@ -27,6 +27,7 @@ function SearchBar({ searchYelp }) {
         e.preventDefault();
         if (searchYelp) {
             searchYelp(searchInput, searchLocation, sortingOption);
+            console.log(`Searching Yelp with ${searchInput} in ${searchLocation}.`);
         }
     };
 
